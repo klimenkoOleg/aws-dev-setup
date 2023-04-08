@@ -10,13 +10,17 @@ $ Prerequisites
 4. Login to AWS:
 aws configure
 └─[$] <> aws configure --profile dev-aws set region us-west-11
-└─[$] <> aws configure --profile myprofile set aws_access_key_id AKIA4GXX7H66F3VD3NWA
-└─[$] <> aws configure --profile myprofile set aws_secret_access_key Ad5IbGWyxmSHr414xV02TkBVvBCrswicf2fNYmOi
+└─[$] <> aws configure --profile myprofile set aws_access_key_id <access_key>
+└─[$] <> aws configure --profile myprofile set aws_secret_access_key <secret_access_key>
 └─[$] <> aws configure list-profiles
 
 
+aws sts get-caller-identity
 
-6. Create EKS cluster by runnin commands from your local computer:
+
+
+
+6a. EITHER Create EKS cluster by runnin commands from your local computer:
 ```
 eksctl create cluster \
 --name dev-env \
@@ -24,4 +28,12 @@ eksctl create cluster \
 --node-type t2.small \
 --nodes 2
 ```
+6b. OR grab existing configuration:
+```
+aws eks update-kubeconfig --region us-east-1 --name dev-eks
+```
+
+
+
+7. kubectl get nodes --kubeconfig ~/.kube/config
 
