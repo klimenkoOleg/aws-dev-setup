@@ -71,6 +71,8 @@ kubectl port-forward pods/fake-api-5  8888:8080
 http://localhost:8888/shop/campaigns.json
 
 
+kubectl exec --stdin --tty krakend-deployment-5755f5dd4d-4kqs2 -- sh
+
 
 
 
