@@ -39,7 +39,24 @@ aws eks update-kubeconfig --region us-east-1 --name dev-eks
 kubectl get nodes --kubeconfig ~/.kube/config
 ```
 
-8. 
+8. Deploy KrakenD
+cd krakend-k8s
+./create_configmap.sh
+kubectl create -f deployment-definition.yaml
+kubectl create -f service-definition.yaml 
+
+9. Get KrakenD service address
+kubectl get services
+
+NAME              TYPE           CLUSTER-IP     EXTERNAL-IP                                                               PORT(S)          AGE
+krakend-service   LoadBalancer   10.100.59.95   adf3de364ca344cde8178d5252639250-1647162678.us-west-1.elb.amazonaws.com   8080:30907/TCP   5m13s
+
+Use EXTERNAL-IP:8080 in  browser:
+http://adf3de364ca344cde8178d5252639250-1647162678.us-west-1.elb.amazonaws.com:8080/combination/10
+
+
+10. 
+
 
 
 Useful AWS commands:
