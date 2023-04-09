@@ -34,6 +34,10 @@ aws eks update-kubeconfig --region us-east-1 --name dev-eks
 ```
 
 
+7. Check is we can connect to AWS Kubernetese: 
+```
+kubectl get nodes --kubeconfig ~/.kube/config
+```
 
-7. kubectl get nodes --kubeconfig ~/.kube/config
+8. 
 
