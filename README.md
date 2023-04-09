@@ -41,3 +41,37 @@ kubectl get nodes --kubeconfig ~/.kube/config
 
 8. 
 
+
+Useful AWS commands:
+* aws configure get region - get current region
+* 
+
+esctl:
+*  eksctl delete cluster --name microservices --region eu-central-1 - remove a cluster
+
+Useful kubectl commands:
+* 
+
+
+Push Docker image to AWS ECR repo:
+aws ecr create-repository --repository-name microservice-fake-api
+docker image ls fake-api
+```
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+fake-api     latest    557cfe2072f6   29 minutes ago   439MB
+```
+docker tag  557cfe2072f6 839112409020.dkr.ecr.us-west-1.amazonaws.com/microservice-fate-api:1.0.0
+aws ecr get-login-password | docker login --username AWS --password-stdin  839112409020.dkr.ecr.us-west-1.amazonaws.com/microservice-fate-api
+docker push 839112409020.dkr.ecr.us-west-1.amazonaws.com/microservice-fate-api:1.0.0
+
+kubectl run fake-api-5 --image=839112409020.dkr.ecr.us-west-1.amazonaws.com/microservice-fate-api:1.0.0 --port=8080 
+
+kubectl port-forward pods/fake-api-5  8888:8080
+
+http://localhost:8888/shop/campaigns.json
+
+
+
+
+
+
