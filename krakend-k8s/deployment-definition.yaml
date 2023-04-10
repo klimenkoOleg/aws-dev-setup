@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krakend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: krakend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: krakend
+    spec:
+      volumes:
+      - name: krakend-cfg
+        configMap:
+          name: krakend-cfg
+      containers:
+      - name: krakend
+        image: 839112409020.dkr.ecr.us-west-1.amazonaws.com/k8s-krakend:0.0.1
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+        command: [ "/usr/bin/krakend" ]
+        args: [ "run", "-d", "-c", "/etc/krakend/krakend.json", "-p", "8080" ]
+        volumeMounts:
+        - name: krakend-cfg
+          mountPath: /etc/krakend
