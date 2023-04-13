@@ -92,7 +92,10 @@ kubectl exec --stdin --tty krakend-deployment-5755f5dd4d-4kqs2 -- sh
 
 
 11. Tunnel To RDS through jump EC2 host
+https://repost.aws/knowledge-center/rds-connect-ec2-bastion-host
+```
 ssh -i "dev.pem" -L 5555:db-dev.czxdkucbw4ta.us-west-1.rds.amazonaws.com:5432 ec2-user@ec2-54-67-6-12.us-west-1.compute.amazonaws.com -N -f
+```
 
 12. 
 
